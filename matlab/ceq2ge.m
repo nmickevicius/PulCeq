@@ -187,12 +187,13 @@ toppe.write2loop('setup', sysGE, 'version', toppeVersion);
 fprintf('ceq2ge: Writing block %d/%d', 1, ceq.nMax); prev_n = 1; % Progress update trackers
 for n = 1:ceq.nMax
     if ~mod(n, 2000) || n == ceq.nMax
-        for ib = 1:strlength(sprintf('ceq2ge: Writing block %d/%d', prev_n, ceq.nMax))
-            fprintf('\b');
-        end
-        prev_n = n;
-        fprintf(sprintf('ceq2ge: Writing block %d/%d', n, ceq.nMax));
-        if n == ceq.nMax, fprintf('\n'), end
+        % for ib = 1:strlength(sprintf('ceq2ge: Writing block %d/%d', prev_n, ceq.nMax))
+        %     fprintf('\b');
+        % end
+        % prev_n = n;
+        % fprintf(sprintf('ceq2ge: Writing block %d/%d', n, ceq.nMax));
+        % if n == ceq.nMax, fprintf('\n'), end
+        fprintf('ceq2ge: Writing block %d/%d\n', n, ceq.nMax);
     end
 
     i = ceq.loop(n, 1);   % block group ID
