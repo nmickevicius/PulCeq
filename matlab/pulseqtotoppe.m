@@ -7,4 +7,4 @@ sysGE = toppe.systemspecs('maxGrad', maxGrad, 'maxSlew', maxSlew, 'maxView', max
 'rfDeadTime', rfDeadTime, 'rfRingdownTime', rfRingdownTime, 'adcDeadTime', adcDeadTime);
 seq2ge_mcw(seqName, sysGE, tarName, true);
 
-~ = cd(olddir);
+cd(olddir);

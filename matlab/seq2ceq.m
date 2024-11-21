@@ -61,12 +61,16 @@ parentBlockIndex(1) = 1;  % first block is unique by definition
 fprintf('seq2ceq: Getting block %d/%d', 1, ceq.nMax); prev_n = 1; % Progress update trackers
 for n = 1:ceq.nMax
     if ~mod(n, 500) || n == ceq.nMax
-        for ib = 1:strlength(sprintf('seq2ceq: Getting block %d/%d', prev_n, ceq.nMax))
-            fprintf('\b');
-        end
-        prev_n = n;
-        fprintf(sprintf('seq2ceq: Getting block %d/%d', n, ceq.nMax));
-        if n == ceq.nMax, fprintf('\n'), end
+        %for ib = 1:strlength(sprintf('seq2ceq: Getting block %d/%d', prev_n, ceq.nMax))
+        %    fprintf('\b');
+        %end
+        %prev_n = n;
+        %fprintf(sprintf('seq2ceq: Getting block %d/%d', n, ceq.nMax));
+        %if n == ceq.nMax, fprintf('\n'), end
+
+        % NJM: octave doesn't like strlength(). just print with new line...
+        fprintf('seq2seq: Getting block %d/%d\n', n, ceq.nMax);
+        
     end
 
     % Pure delay blocks are handled separately
