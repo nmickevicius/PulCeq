@@ -1,4 +1,4 @@
-function seq2ge_mcw(seqarg, sysGE, ofname, ignoreSegmentLabels)
+function seq2ge(seqarg, sysGE, ofname, ignoreSegmentLabels)
 % Convert a Pulseq file (http://pulseq.github.io/) to a .tar file for GE scanners
 %
 % Inputs
@@ -12,13 +12,13 @@ function seq2ge_mcw(seqarg, sysGE, ofname, ignoreSegmentLabels)
 % Effect
 %   Writes a .tar file containing all the required scan files to run on GE scanners
 
-if nargin < 4
-    ignoreSegmentLabels = false;
-end
+% Get Pulseq system struct
+fprintf('Getting Pulseq system struct from .seq file...')
+seq = mr.Sequence(); seq.read(seqarg); sys = seq.sys;
+fprintf(' done\n');
 
 % Default behavior for sysGE
 if isempty(sysGE)
-    
     % Read in system specs defined from .seq file
     seq = mr.Sequence(); seq.read(seqarg); sys = seq.sys;
 
@@ -38,4 +38,4 @@ end
 ceq = seq2ceq(seqarg, 'ignoreSegmentLabels', ignoreSegmentLabels);
 
 % Write to TOPPE files
-ceq2ge_mcw(ceq, sysGE, ofname);
+ceq2ge(ceq, sysGE, ofname, 'seqGradRasterTime', sys.gradRasterTime);
